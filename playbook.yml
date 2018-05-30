@@ -3,7 +3,7 @@
   become: yes
   vars:
    users:
-    - name: qwer
+    - name: deploy
       key: "{{ lookup('file', '/etc/ansible/adduser/ssh_key/id_rsa.pub') }}"
 #      password: "{{ '111' | password_hash('sha512') }}"  -------- if ypu want you may do this
   tasks:
