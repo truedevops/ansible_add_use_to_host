@@ -7,7 +7,7 @@ sudo apt-get update && \
 sudo apt-get install -y ansible
 
 1. Create ssh-key                ssh-keygen -t rsa
-  if you are root -> then        ssh-keygen -t rsa -C "alex@test"
+  if you are root -> then        ssh-keygen -t rsa -C "alex@$(hostname)"  -> "Enter file in which to save the key (/root/.ssh/id_rsa):" /home/alex/.ssh/id_rsa
 
 2. Copy public key to your host  
                                  ssh-copy-id -i /home/alex/.ssh/id_rsa.pub alex@192.168.0.2
