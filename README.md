@@ -12,7 +12,7 @@ sudo apt-get install -y ansible
 2. Copy public key to your host  
                                  ssh-copy-id -i /home/alex/.ssh/id_rsa.pub alex@192.168.0.2
 3. Try to enter   ssh 'alex@192.168.0.2'  , if you could not connect to the server without a password, you should press ctrl + d and try to connect with your user account alex@test:  ssh 'alex@192.168.0.2'
-                                 cp /home/alex/.ssh/id_rsa.pub ~ansible_add_use_to_host/ssh_key/
+                                 cp /home/alex/.ssh/id_rsa.pub ~/ansible_add_use_to_host/ssh_key/
 
 
 4.Then we add user "deploy" to our virtual-mashine 192.168.0.2 and give him NOPASSWD ALL. Autorization ONLY SSH-KAY
