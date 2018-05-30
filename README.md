@@ -1,4 +1,4 @@
-# ansible_add_use_to_host
+# ansible_add_use_to_host ansible --version 2.5.3
 
 sudo apt-get update && \
 apt-get install software-properties-common && \
