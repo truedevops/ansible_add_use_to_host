@@ -4,7 +4,7 @@
   vars:
    users:
     - name: deploy
-      key: "{{ lookup('file', '/etc/ansible/adduser/ssh_key/id_rsa.pub') }}"
+      key: "{{ lookup('file', '~/ansible_add_use_to_host/ssh_key/id_rsa.pub') }}"
 #      password: "{{ '111' | password_hash('sha512') }}"  \\-------- If you want to set a password to log in to your account
   tasks:
     - name: Make sure we have a 'wheel' group
