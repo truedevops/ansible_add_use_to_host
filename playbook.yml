@@ -5,7 +5,7 @@
    users:
     - name: deploy
       key: "{{ lookup('file', '/etc/ansible/adduser/ssh_key/id_rsa.pub') }}"
-#      password: "{{ '111' | password_hash('sha512') }}"  -------- if ypu want you may do this
+#      password: "{{ '111' | password_hash('sha512') }}"  \\-------- If you want to set a password to log in to your account
   tasks:
     - name: Make sure we have a 'wheel' group
       group:
@@ -28,7 +28,7 @@
         state: present
         createhome: yes
         shell: /bin/bash
-#        password: "{{ item.password }}" -------- if ypu want you may do this
+#        password: "{{ item.password }}"   \\-------- If you want to set a password to log in to your account
       register: useradd
       with_items:
         - "{{ users }}"
