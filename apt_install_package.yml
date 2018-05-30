@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: apt update
+      apt:
+        update_cache: yes
+
+    - name: install packages
+      apt:
+        pkg: "{{ item }}"
+        state: latest
+      with_items:
+        - git
+        - vim
+        - mc
+        - tmux
+        - htop
+        - curl
+        - ntp

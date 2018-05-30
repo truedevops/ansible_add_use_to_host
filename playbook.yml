@@ -1,0 +1,45 @@
+---
+- hosts: all
+  become: yes
+  vars:
+   users:
+    - name: qwer
+      key: "{{ lookup('file', '/etc/ansible/adduser/ssh_key/id_rsa.pub') }}"
+#      password: "{{ '111' | password_hash('sha512') }}"  -------- if ypu want you may do this
+  tasks:
+    - name: Make sure we have a 'wheel' group
+      group:
+        name: wheel
+        state: present
+
+    - name: Allow 'wheel' group to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^%wheel'
+        line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+    - name: Add sudo users to wheel group
+      user:
+        name: "{{ item.name }}"
+        groups: wheel
+        append: yes
+        state: present
+        createhome: yes
+        shell: /bin/bash
+#        password: "{{ item.password }}" -------- if ypu want you may do this
+      register: useradd
+      with_items:
+        - "{{ users }}"
+
+    - name: Set up authorized keys for sudo user
+      authorized_key:
+        user: "{{ item.name }}"
+        key: "{{ item.key }}"
+        comment: "{{ item.name }}"
+        state: present
+      with_items:
+        - "{{ users }}"
+      when: useradd is success
+      
