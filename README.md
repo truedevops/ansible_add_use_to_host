@@ -9,7 +9,7 @@ sudo apt-get install -y ansible
 1. Create ssh-key                ssh-keygen -t rsa
   if you are root -> then        ssh-keygen -t rsa -C "alex@$(hostname)"  -> "Enter file in which to save the key (/root/.ssh/id_rsa):" /home/alex/.ssh/id_rsa
 
-2. Copy public key to your host  
+2. Copy public key to your virtual-mashine  
                                  ssh-copy-id -i /home/alex/.ssh/id_rsa.pub alex@192.168.0.2
 3. Try to enter   ssh 'alex@192.168.0.2'  , if you could not connect to the server without a password, you should press ctrl + d and try to connect with your user account alex@test:  ssh 'alex@192.168.0.2'
                                  cp /home/alex/.ssh/id_rsa.pub ~/ansible_add_use_to_host/ssh_key/
